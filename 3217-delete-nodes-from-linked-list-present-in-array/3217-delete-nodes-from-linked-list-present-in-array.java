@@ -11,10 +11,14 @@
 class Solution {
     public ListNode modifiedList(int[] nums, ListNode head) {
         int n = nums.length;
-        HashSet<Integer> set = new HashSet<>();
+        int max = Integer.MIN_VALUE;
         for(int i=0;i<n;i++)
         {
-            set.add(nums[i]);
+            max = Math.max(max,nums[i]);
+        }
+        boolean[] freq = new boolean[max+1];
+        for (int num : nums) {
+            freq[num] = true;
         }
 
         ListNode dummy = new ListNode(0);
@@ -23,9 +27,10 @@ class Solution {
         ListNode prev = dummy;
         while(second!=null)
         {
-            if(set.contains(second.val))
+            if(second.val <= max && freq[second.val])
             {
                 prev.next = second.next;
+                
             }
             else
             {
