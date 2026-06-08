@@ -1,23 +1,16 @@
 class MyStack {
 
     public Queue<Integer> q1;
-    public Queue<Integer> q2;
     public MyStack() {
         q1 = new ArrayDeque<>();
-        q2 = new ArrayDeque<>();
     }
     
     public void push(int x) {
-        q2.add(x);
-        while(!q1.isEmpty())
+        q1.add(x);
+        for(int i=0;i<q1.size()-1;i++)
         {
-            q2.add(q1.peek());
+            q1.add(q1.peek());
             q1.poll();
-        }
-        while(!q2.isEmpty())
-        {
-            q1.add(q2.peek());
-            q2.poll();
         }
     }
     
