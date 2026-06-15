@@ -1,18 +1,17 @@
 class Solution {
     public int carFleet(int target, int[] position, int[] speed) {
         int n = position.length;
-        Deque<double[]> s = new ArrayDeque<>();
+        List<double[]> list = new ArrayList<>();
         for(int i=0;i<n;i++)
         {
-            double time =(double) (target-position[i])/speed[i];
-            s.push(new double[]{position[i],time});
+            double time = (double) (target - position[i])/speed[i];
+            list.add(new double[]{position[i], time});
         }
-        List<double[]> list = new ArrayList<>(s);
+        list.sort((a,b) -> Double.compare(a[0],b[0]));
 
-        list.sort((a, b) -> Double.compare(a[0], b[0]));
-
-        s.clear();
-        for (double[] car : list) {
+        Deque<double[]> s = new ArrayDeque<>();
+        for(double[] car:list)
+        {
             s.push(car);
         }
 
@@ -21,8 +20,8 @@ class Solution {
         while(!s.isEmpty())
         {
             double currTime = s.pop()[1];
-
-            if (lastTime == -1 || currTime > lastTime) {
+            if(lastTime==-1 || currTime>lastTime)
+            {
                 count++;
                 lastTime = currTime;
             }
