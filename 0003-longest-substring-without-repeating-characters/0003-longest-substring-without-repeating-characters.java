@@ -4,15 +4,14 @@ class Solution {
         HashSet<Character> set = new HashSet<>();
         int l = 0;
         int maxlen = 0;
-        char[] c = s.toCharArray();
         for(int r=0;r<n;r++)
         {
-            while(set.contains(c[r]))
+            while(set.contains(s.charAt(r)))
             {
-                set.remove(c[l]);
+                set.remove(s.charAt(l));
                 l++;
             }
-            set.add(c[r]);
+            set.add(s.charAt(r));
             maxlen = Math.max(maxlen,r-l+1);
         }
         return maxlen;
