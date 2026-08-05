@@ -13,21 +13,15 @@ class Solution {
             l++;
             r++;
         }
-        if(l<n1)
+        while(l<n1)
         {
-            while(l<n1)
-            {
-                s.append(word1.charAt(l));
-                l++;
-            }
+            s.append(word1.charAt(l));
+            l++;
         }
-        if(r<n2)
+        while(r<n2)
         {
-            while(r<n2)
-            {
-                s.append(word2.charAt(r));
-                r++;
-            }
+            s.append(word2.charAt(r));
+            r++;
         }
         return s.toString();
     }
