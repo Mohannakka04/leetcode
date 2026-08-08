@@ -4,20 +4,18 @@ class Solution {
         int n = s.length();
         for(int i=0;i<n;i++)
         {
-            char c = s.charAt(i);
-            if(c=='(' || c=='{' || c=='[')
+            char ch = s.charAt(i);
+            if(ch=='(' || ch=='[' || ch=='{')
             {
-                stack.push(c);
+                stack.push(ch);
             }
-            else
-            {
+            else{
                 if(stack.isEmpty())
                 {
                     return false;
                 }
                 else{
-                    char top = stack.peek();
-                    if((c==')' && top=='(') || (c=='}' && top=='{') || (c==']' && top=='['))
+                    if((ch==')' && stack.peek()=='(') || (ch==']' && stack.peek()=='[') || (ch=='}' && stack.peek()=='{'))
                     {
                         stack.pop();
                     }
