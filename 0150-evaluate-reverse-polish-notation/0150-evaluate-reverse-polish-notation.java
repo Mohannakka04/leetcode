@@ -1,36 +1,37 @@
 class Solution {
     public int evalRPN(String[] tokens) {
-        Deque<Integer> s = new ArrayDeque<>();
-        for(int i=0;i<tokens.length;i++)
+        Deque<Integer> stack = new ArrayDeque<>();
+        int n  = tokens.length;
+        for(int i=0;i<n;i++)
         {
-            if(tokens[i].equals("*"))
+            if(tokens[i].equals("+"))
             {
-                int top = s.pop();
-                int newTop = top*s.pop();
-                s.push(newTop);
+                int top = stack.pop();
+                int newTop = top + stack.pop();
+                stack.push(newTop);
             }
-            else if(tokens[i].equals("+"))
+            else if(tokens[i].equals("*"))
             {
-                int top = s.pop();
-                int newTop = top+s.pop();
-                s.push(newTop);
-            }
-            else if(tokens[i].equals("-"))
-            {
-                int top = s.pop();
-                int newTop = s.pop()-top;
-                s.push(newTop);
+                int top = stack.pop();
+                int newTop = top * stack.pop();
+                stack.push(newTop);
             }
             else if(tokens[i].equals("/"))
             {
-                int top = s.pop();
-                int newTop = s.pop()/top;
-                s.push(newTop);
+                int top = stack.pop();
+                int newTop = stack.pop() / top;
+                stack.push(newTop);
+            }
+            else if(tokens[i].equals("-"))
+            {
+                int top = stack.pop();
+                int newTop = stack.pop() - top;
+                stack.push(newTop);
             }
             else{
-                s.push(Integer.parseInt(tokens[i]));
+                stack.push(Integer.parseInt(tokens[i]));
             }
         }
-        return s.pop();
+        return stack.peek();
     }
 }
