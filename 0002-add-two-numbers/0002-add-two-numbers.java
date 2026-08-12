@@ -22,29 +22,23 @@ class Solution {
             if(temp1!=null)
             {
                 sum += temp1.val;
-            }
-            if(temp2!=null)
-            {
-                sum += temp2.val;
-            }
-            ListNode newNode = new ListNode(sum%10);
-            carry = sum/10;
-            curr.next = newNode;
-            curr = curr.next;
-
-            if(temp1!=null)
-            {
                 temp1 = temp1.next;
             }
             if(temp2!=null)
             {
+                sum += temp2.val;
                 temp2 = temp2.next;
             }
+            ListNode newNode = new ListNode(sum%10);
+            carry = sum/10;
+            curr.next = newNode;
+            curr = newNode;
         }
         if(carry!=0)
         {
             ListNode newNode = new ListNode(carry);
             curr.next = newNode;
+            curr = newNode;
         }
         return dummy.next;
     }
