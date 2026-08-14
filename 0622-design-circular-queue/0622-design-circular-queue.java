@@ -1,20 +1,15 @@
-public class Node {
-    int data;
-    Node next;
-    Node(int val)
-    {
-        data = val;
-        next = null;
-    }
-}
 class MyCircularQueue {
-    public Node head;
-    public Node tail;
+    int[] arr;
+    int front;
+    int rear;
+    int capacity;
     int size;
     public MyCircularQueue(int k) {
-        head = new Node(0);
-        size = k;
-        tail = head;
+        capacity = k;
+        arr = new int[capacity];
+        front = 0;
+        rear = 0;
+        size = 0;
     }
     
     public boolean enQueue(int value) {
@@ -22,17 +17,9 @@ class MyCircularQueue {
         {
             return false;
         }
-        Node newNode = new Node(value);
-        if(isEmpty())
-        {
-            head.next = newNode;
-            tail = newNode;
-        }
-        else{
-            tail.next = newNode;
-            tail = newNode;
-        }
-        size--;
+        arr[rear] = value;
+        rear = (rear + 1) % capacity;
+        size++;
         return true;
     }
     
@@ -41,29 +28,33 @@ class MyCircularQueue {
         {
             return false;
         }
-        head.next = head.next.next;
-        if(head.next==null)
-        {
-            tail = head;
-        }
-        size++;
+        front = (front + 1) % capacity;
+        size--;
         return true;
     }
     
     public int Front() {
-        return isEmpty() ? -1 : head.next.data;
+        if(isEmpty())
+        {
+            return -1;
+        }
+        return arr[front];
     }
     
     public int Rear() {
-        return isEmpty() ? -1 : tail.data;
+        if(isEmpty())
+        {
+            return -1;
+        }
+        return arr[(rear-1+capacity)%capacity];
     }
     
     public boolean isEmpty() {
-        return head.next==null;
+        return size==0;
     }
     
     public boolean isFull() {
-        return size==0;
+        return size==capacity;
     }
 }
 
