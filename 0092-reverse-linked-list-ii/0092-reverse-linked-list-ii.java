@@ -16,15 +16,14 @@ class Solution {
         }
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        
         ListNode beforeLeft = dummy;
         for(int i=1;i<left;i++)
         {
             beforeLeft = beforeLeft.next;
         }
         ListNode curr = beforeLeft.next;
-        ListNode leftNode = curr;
         ListNode prev = null;
+        ListNode leftNode = curr;
         for(int i=left;i<=right;i++)
         {
             ListNode temp = curr.next;
