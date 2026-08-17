@@ -37,9 +37,9 @@ class Solution {
             }
             temp = temp.next.next;
         }
-        temp = head;
         Node dummy = new Node(0);
         Node res = dummy;
+        temp = head;
         while(temp!=null)
         {
             res.next = temp.next;
