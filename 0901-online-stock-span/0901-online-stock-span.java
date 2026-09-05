@@ -1,18 +1,18 @@
 class StockSpanner {
-    public Deque<int[]> s;
+    Deque<int[]> stack;
     public StockSpanner() {
-        s = new ArrayDeque<>();
+        stack = new ArrayDeque<>();
     }
     
     public int next(int price) {
-        int span = 1;
-        while(!s.isEmpty() && s.peek()[0]<=price)
+        int spam = 1;
+        while(!stack.isEmpty() && stack.peek()[0]<=price)
         {
-            span += s.peek()[1];
-            s.pop();
+            spam += stack.peek()[1];
+            stack.pop();
         }
-        s.push(new int[] {price,span});
-        return span;
+        stack.push(new int[]{price,spam});
+        return spam;
     }
 }
 
