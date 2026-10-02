@@ -1,0 +1,24 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> arr = new ArrayList<>();
+        backtracking(arr,"",0,0,n);
+        return arr;
+    }
+    public static void backtracking(List<String> arr,String str,int open,int close,int n)
+    {
+        if(str.length()==2*n)
+        {
+            arr.add(str);
+            return ;
+        }
+
+        if(open<n)
+        {
+            backtracking(arr,str+'(',open+1,close,n);
+        }
+        if(close<open)
+        {
+            backtracking(arr,str+')',open,close+1,n);
+        }
+    }
+}
