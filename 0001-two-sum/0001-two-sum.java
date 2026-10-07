@@ -4,10 +4,10 @@ class Solution {
         HashMap<Integer,Integer> map = new HashMap<>();
         for(int i=0;i<n;i++)
         {
-            int remVal = target - nums[i];
-            if(map.containsKey(remVal))
+            int req = target - nums[i];
+            if(map.containsKey(req))
             {
-                return new int[]{map.get(remVal),i};
+                return new int[]{map.get(req),i};
             }
             map.put(nums[i],i);
         }
